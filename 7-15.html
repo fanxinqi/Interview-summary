@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS三角形</title>
+    <style>
+        .triangle1{
+           width:50px;
+            height:50px;
+            border: 50px solid;
+            border-color: red blue yellow green;
+         }
+        .triangle2{
+                 width: 0px;
+                 border: 50px solid;
+                 border-color: red blue yellow green;
+             }
+
+        .triangle3{
+            width: 0px;
+            border: 50px solid;
+            border-color: red transparent transparent transparent;
+        }
+        .triangle4{
+            position: relative;
+            width: 50px;
+            height: 50px;
+            border: 1px solid #333;
+        }
+        .triangle4::after{
+            width:0;
+            border: 10px solid;
+            border-color: transparent transparent red transparent;
+            content: "";
+            position:absolute;
+            top:-20px;
+            left:50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+
+  <div class="triangle1">
+
+  </div>
+
+  <div class="triangle2">
+
+  </div>
+
+  <div class="triangle3">
+
+  </div>
+<div class="triangle4">
+    xxx   xxx   xxxxxx
+</div>
+</body>
+</html>
