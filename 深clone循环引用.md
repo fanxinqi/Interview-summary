@@ -1,9 +1,12 @@
-#浅拷贝 两种写法
-## Object.assign && 展开运算符
+# 
+## 浅拷贝 两种写法
+* Object.assign && 展开运算符
+
 ```
  let xx={id:1,name:'fanxinqi'}
  Object.assign(xx)
  {...xxx}
+
 ```
 
 ## 深拷贝 写法
