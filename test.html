@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +8,55 @@
     <title>Document</title>
     <style>
         .whole-back {
-        position: fixed;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(10, 9, 31, 0.5);
-        /* alpha: 0.6; */
-        /* justify-content: center; */
-        z-index: 1000;
-    }
-    .dialog-block{
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
-        background-color: white;
-        border-radius: 20px;
-    }
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(10, 9, 31, 0.5);
+            /* alpha: 0.6; */
+            /* justify-content: center; */
+            z-index: 1000;
+        }
+
+        .dialog-block {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border-radius: 20px;
+        }
     </style>
 </head>
+
 <body>
     <div class="whole-back">
         <div class="dialog-block">
-                xxx
+            xxx
         </div>
     </div>
-    
+    <script>
+        function get(url) {
+            let xhr = new XMLHttpRequest();
+                return new Promise(function(resolve, reject) {
+                    xhr.open("get", url, true);
+                    xhr.send(null);
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status == 200) {
+                                resolve(JSON.parse(xhr.responseText));
+                            }
+                        }
+                    }
+
+                }
+                )
+        }
+        get("http://192.168.8.168:8000/data.json").then((item) => {
+            alert(item);
+        });
+    </script>
 </body>
+
 </html>
