@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //1.构造函数绑定，call 或则 apply方法
+        function Parent() {
+            this.parentId = 1;
+        }
+
+        function Child() {
+            Parent.apply(this, arguments);
+            //Parent.call(this,...arguments);
+        }
+        //2.prototype 需要手动 纠正 constructor 属性 如果delete 属性，只能删除属性，不能删除变量，远行属性
+        Child.prototype = new Parent();
+        Child.prototype.constructor = Child;
+
+        //3.直接继承prototype 比较省内容，不用重新创建原型对象
+        Child.prototype = Parent.prototype;
+        var F = function () {};
+        F.prototype = Parent.prototype;
+        Child.prototype = new F();
+        Child.prototype.constructor = Child;
+
+        //4.copy 继承
+        function myextend() {
+            let p = Array.prototype.slice.apply(arguments, [1]),
+                target = arguments[0];
+            target.uber = [];
+            p.forEach((item) => {
+                for (var i in item.prototype) {
+                    target.prototype[i] = item.prototype[i];
+                }
+                target.uber.push(item);
+            });
+        }
+
+        function Animal() {};
+
+        　　
+        Animal.prototype.species = "动物";
+
+        function Cat() {};
+
+        myextend(Cat, Animal);
+
+        var c = new Cat();
+
+        // mvc 
+
+
+        // mvvm
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
